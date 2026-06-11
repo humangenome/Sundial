@@ -1,4 +1,5 @@
 -- GNatives array for Solarpunk (UE 5.7.1)
+-- Re-verified unique + correct against PDB on build 23665180 (2026-06-11); all disp32s already wildcarded.
 -- Derived from shipped PDB: ?GNatives@@3... at .data RVA 0x76A01D0.
 -- Anchored on the sole native-dispatch site (RVA 0x13B11A4):
 --   mov eax,r9d ; lea r9,[rip+GNatives] ; mov rcx,r10 ; mov r9,[r9+rax*8]

@@ -14,7 +14,7 @@ public static class ClientPackLocator
     // mod reinstall into the player's game on next connect (idempotency key for
     // Ue4ssBootstrapService + ModInstallService). Keep in lockstep with launcher
     // releases that change the bundled UE4SS/mod payload.
-    public const string BundledVersion = "1.0.1";
+    public const string BundledVersion = "1.0.2";
 
     // The id ModInstallService records SolarpunkConnect under (folder name in the
     // game's UE4SS Mods dir).

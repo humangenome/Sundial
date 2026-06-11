@@ -1,4 +1,5 @@
 -- StaticConstructObject_Internal for Solarpunk (UE 5.7.1)
+-- Re-verified unique + correct against PDB on build 23665180 (2026-06-11); all disp32s already wildcarded.
 -- Derived from shipped PDB: ?StaticConstructObject_Internal@@YA... at .text RVA 0x13CEA9C
 -- AOB = function prologue + distinctive param-read body (cookie disp wildcarded). Verified unique.
 function Register()

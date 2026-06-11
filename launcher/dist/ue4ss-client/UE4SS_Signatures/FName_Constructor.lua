@@ -1,4 +1,5 @@
 -- FName::FName(const TCHAR*, EFindName) for Solarpunk (UE 5.7.1)
+-- Re-verified unique + correct against PDB on build 23665180 (2026-06-11); all disp32s already wildcarded.
 -- Derived from shipped PDB: ??0FName@@QEAA@PEB_WW4EFindName@@@Z at .text RVA 0x122B68C.
 -- Solarpunk uses sub rsp,0x40 (FFW used 0x30) which is why the FFW pattern failed here.
 -- AOB = prologue through movups body; relative call disp wildcarded. Verified unique.
