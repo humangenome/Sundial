@@ -59,8 +59,8 @@ MainWindow (servers deck + hero + console/RCON tab + mods tab + dialogs),
 ServerStore/ServerEntry (`%APPDATA%\Solarpunk\servers.json`), CharacterStore
 (`characters.json`, per-server roster + picker dialog — Solarpunk-specific, the
 ?Name= identity), AutoUpdater (ed25519-signed manifest at
-`https://survivalservers.b-cdn.net/sundial/launcher/manifest.json` — pubkey
-is a PLACEHOLDER so auto-update is cleanly disabled until the keypair lands),
+`https://survivalservers.b-cdn.net/sundial/launcher/manifest.json`, verified
+against the embedded update-signing public key),
 RconClient (Source RCON, port+3), A2sClient (A2S_INFO, port+2),
 SolarpunkHttpClient (HMAC-SHA256 API client, port+4), Ue4ssBootstrapService /
 ModInstallService / Ue4ssInjector / Ue4ssLogTail / GameLaunchService /
@@ -100,8 +100,7 @@ Before building the installer, drop the UE4SS experimental build (5.7-capable
   retail box (each path proven individually; the no-op-on-second-load is
   standard LoadLibrary refcount behavior).
 - NSIS installer build + install/uninstall flow (straight clone of Lantern's).
-- Auto-update end-to-end (intentionally disabled until the Solarpunk ed25519
-  update keypair + signed manifest are published; flip
-  `AutoUpdater.UpdateSigningPublicKeyHex`).
+- Auto-update end-to-end (live once a signed manifest is published via
+  `scripts/sign-and-publish-manifest.sh`).
 - solarpunk:// URL-scheme hand-off from a hosting panel (registered on startup;
   parsing is covered by the ported code paths).
