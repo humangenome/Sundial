@@ -6,8 +6,8 @@ namespace Solarpunk.Launcher;
 //
 // PORTED FROM BEACON, trimmed for the Solarpunk (Solarpunk) client: Beacon's
 // SN2 / UE4SS / Python path overrides and per-character map are dropped —
-// Solarpunk locates Solarpunk + installs UE4SS via ConnectFlow, and has no
-// multi-character concept. The fields the ported MainWindow + AutoUpdater need
+// the launcher locates Solarpunk + installs UE4SS via ConnectFlow, and
+// CharacterStore owns the per-server character roster. The fields the ported MainWindow + AutoUpdater need
 // (a manual game-path override, last address/endpoint, log dir, the two
 // startup/update toggles) are kept.
 public sealed class LauncherSettings
