@@ -61,7 +61,8 @@ secrets/
 
 # Internal-only — never published
 CHANGELOG.md
-/docs/
+/docs/*
+!/docs/img/
 /assets/
 /tools/
 server-mods/client_connect_named.lua
