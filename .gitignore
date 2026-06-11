@@ -1,0 +1,74 @@
+# Build output
+bin/
+obj/
+out/
+build/
+publish/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/
+.idea/
+
+# .NET
+*.pdb
+*.dll.config
+*.publish.xml
+.nuget/
+*.nupkg
+project.lock.json
+artifacts/
+PublishProfiles/
+**/Properties/launchSettings.json
+
+# C++ / native
+*.obj
+*.exe
+*.lib
+*.exp
+native/SolarpunkPlugin/build/
+
+# UE4SS runtime binaries (fetched at release time, never committed)
+UE4SS.dll
+dwmapi.dll
+
+# Packaged release artifacts
+dist/out/
+launcher/installer/dist/
+
+# Logs / dumps / runtime artifacts
+logs/
+crashes/
+*.log
+*.dmp
+data/
+chat-*.json
+roster.json
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local dev / secrets
+local/
+secrets/
+*.local.json
+*.secret
+*.pem
+
+# Internal-only — never published
+CHANGELOG.md
+/docs/
+/assets/
+/tools/
+server-mods/client_connect_named.lua
+server-mods/client_connect_open.lua
+server-mods/host_netid_enforcer.lua
+
+# Scratch
+tmp/
+__pycache__/
+.codex-*

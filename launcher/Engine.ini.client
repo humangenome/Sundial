@@ -1,0 +1,37 @@
+; Solarpunk CLIENT Engine.ini — written to %LOCALAPPDATA%\Solarpunk\Saved\Config\Windows\Engine.ini
+; BEFORE launch. This is the transport keystone: disabling the Steam OSS deregisters
+; SteamSockets as the default socket subsystem, so the stock UIpNetDriver binds a real
+; UDP socket instead of trying to bind a SteamID. Without bEnabled=false the client fails
+; with ETravelFailure::PendingNetGameCreateFailure "Error initializing network layer".
+[OnlineSubsystem]
+DefaultPlatformService=Null
+
+[OnlineSubsystemSteam]
+bEnabled=false
+
+[OnlineSubsystemNull]
+bSimulateForwarded=true
+
+[/Script/Engine.GameEngine]
+!NetDriverDefinitions=ClearArray
++NetDriverDefinitions=(DefName="GameNetDriver",DriverClassName="/Script/OnlineSubsystemUtils.IpNetDriver",DriverClassNameFallback="/Script/OnlineSubsystemUtils.IpNetDriver")
+
+[/Script/Engine.Engine]
+!NetDriverDefinitions=ClearArray
++NetDriverDefinitions=(DefName="GameNetDriver",DriverClassName="/Script/OnlineSubsystemUtils.IpNetDriver",DriverClassNameFallback="/Script/OnlineSubsystemUtils.IpNetDriver")
+
+[/Script/OnlineSubsystemUtils.IpNetDriver]
+NetConnectionClassName=/Script/OnlineSubsystemUtils.IpConnection
+ConnectionTimeout=300.0
+InitialConnectTimeout=300.0
+MaxClientRate=2097152
+MaxInternetClientRate=2097152
+
+[/Script/Engine.Player]
+ConfiguredInternetSpeed=2097152
+ConfiguredLanSpeed=2097152
+
+[/Script/Engine.GameNetworkManager]
+TotalNetBandwidth=16777216
+MaxDynamicBandwidth=2097152
+MinDynamicBandwidth=524288
