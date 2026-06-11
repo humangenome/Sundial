@@ -72,4 +72,3 @@ server-mods/host_netid_enforcer.lua
 # Scratch
 tmp/
 __pycache__/
-.codex-*
