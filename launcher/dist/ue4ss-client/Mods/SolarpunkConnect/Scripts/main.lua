@@ -1,4 +1,4 @@
--- SolarpunkConnect v1.0.0: client join mod.
+-- SolarpunkConnect v1.1.0: client join mod + name-channel keeper.
 --
 -- PROVEN TRANSPORT RECIPE (2026-06-09, real retail client -> headless host):
 -- the launcher writes the client Engine.ini (OSS=Null + [OnlineSubsystemSteam]
@@ -83,7 +83,57 @@ local function go()
     end
 end
 
-log("v1.0.0 loaded — waiting for PlayerController + connect target")
+-- ---------------------------------------------------------------------------
+-- Name-channel keeper (v1.1.0, game build 23665180+).
+--
+-- Build churn broke the ?Name= carrier: since 23665180 the game re-applies its
+-- platform profile name (OSS Null = the machine name, e.g. RYZEN3-PC-...) to
+-- the PlayerState after join, overwriting the URL's ?Name=<char>[__SPPW__<pw>].
+-- The whole server identity stack (synthetic save/load key, auth token, roster)
+-- reads PlayerState:GetPlayerName(), so the character identity — and password
+-- auth on locked servers — died with it. Verified on the old build (23659698)
+-- the URL name stuck (roster id was crc32 of the character name).
+--
+-- Fix: re-assert the name from the client with the stock engine RPC
+-- APlayerController:ServerChangeName(<full ?Name= value>) whenever the local
+-- PlayerState disagrees. Reliable RPC, last-write-wins, and the server-side
+-- SolarpunkAuth sweep explicitly tolerates a name that lands via "a post-join
+-- ServerChangeName" (its grace window exists for exactly this). The loop runs
+-- for the whole session (cheap: one compare every 2s, RPC only on mismatch) so
+-- a later profile re-apply can never silently flip the save key mid-session.
+-- ---------------------------------------------------------------------------
+local function targetName()
+    local t = readTarget()
+    if not t then return nil end
+    local i = t:find("?Name=", 1, true)
+    if not i then return nil end
+    local nm = t:sub(i + 6)
+    if #nm == 0 then return nil end
+    return nm
+end
+
+local lastAsserted = 0
+local function keepName()
+    local want = targetName()
+    if not want then return end
+    pcall(function()
+        local pc = FindFirstOf("PlayerController")
+        if not (pc and pc:IsValid()) then return end
+        local ps = pc.PlayerState
+        if not (ps and ps:IsValid()) then return end
+        local have = ps:GetPlayerName():ToString()
+        if have ~= want then
+            pc:ServerChangeName(want)
+            local now = os.time()
+            if now - lastAsserted >= 30 then
+                log("name re-assert: '" .. tostring(have) .. "' -> '" .. want .. "'")
+                lastAsserted = now
+            end
+        end
+    end)
+end
+
+log("v1.1.0 loaded — waiting for PlayerController + connect target")
 LoopAsync(10000, function()
     if fired then return true end
     local pc = FindFirstOf("PlayerController")
@@ -92,5 +142,12 @@ LoopAsync(10000, function()
         ExecuteInGameThread(function() go() end)
         return true
     end
+    return false
+end)
+
+-- Name keeper: low-frequency, game-thread, whole-session.
+LoopAsync(2000, function()
+    if not fired then return false end
+    ExecuteInGameThread(function() keepName() end)
     return false
 end)
