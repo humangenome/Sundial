@@ -15,7 +15,7 @@ Sundial gives **Solarpunk** IP/port multiplayer on dedicated servers: players jo
 Every player must install Sundial to join a Sundial server. Stock Solarpunk cannot connect to Sundial servers directly.
 
 <p align="center">
-  <img src="docs/img/launcher.png" alt="Sundial launcher" width="860">
+  <img src="docs/img/launcher.png" alt="Sundial" width="860">
 </p>
 
 ## Features
