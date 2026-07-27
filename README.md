@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="launcher/dist/branding/solarpunk-icon-1024.png" alt="Sundial" width="180">
+  <img src="docs/img/sundial-icon.png" alt="Sundial" width="180">
 </p>
 
 <p align="center">
@@ -63,12 +63,15 @@ The shortest path is [SurvivalServers.com Solarpunk hosting](https://www.surviva
 Sundial checks for app updates automatically on launch and while it is running.
 
 ### Self-hosted servers
-1. Download `SundialServer-<version>.zip` from the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest).
+1. Download `SundialServer-v<version>.zip` from the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest).
 2. Extract it on the Windows host.
 3. Edit `SolarpunkServer\appsettings.json` (ports, server name, passwords).
 4. **Install the Solarpunk game files** into the folder set as `GameInstallRoot` (default `C:\Solarpunk\game`) — SolarpunkServer launches the game from there, it does not ship the game. Either copy your existing `Steam\steamapps\common\Solarpunk` folder into that path, or install it with SteamCMD using a Steam account that owns Solarpunk: `steamcmd +force_install_dir C:\Solarpunk\game +login <account> +app_update 1805110 validate +quit`. The server runs headless — no GPU is required.
-5. Forward/open the gameplay UDP port, query UDP port, RCON TCP port, and admin HTTP TCP port.
-6. Run `SolarpunkServer\SolarpunkServer.exe`.
+5. Copy the contents of `SolarpunkServer\ue4ss-server\` into `<GameInstallRoot>\Solarpunk\Binaries\Win64\`. Without this the game comes up as a plain Solarpunk listen server with no password gate, chat, roster, or admin tools.
+6. Forward/open the gameplay UDP port, query UDP port, RCON TCP port, and admin HTTP TCP port.
+7. Run `SolarpunkServer\SolarpunkServer.exe`.
+
+Full server documentation — settings, RCON, the admin API, the runtime, and the wire protocols — lives in [SundialServer](https://github.com/HumanGenome/SundialServer#documentation).
 
 ### Port topology
 All side-channel ports derive from the gameplay port:
@@ -97,7 +100,7 @@ The player installer lives on this repo's [releases](https://github.com/HumanGen
 
 - `SundialSetup-<version>.exe` — installer for players
 
-The dedicated server package (`SundialServer-<version>.zip`) is published on the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest). If you only want to play on someone else's server, you need the installer, not the server zip.
+The dedicated server package (`SundialServer-v<version>.zip`) is published on the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest). If you only want to play on someone else's server, you need the installer, not the server zip.
 
 ## Source
 
