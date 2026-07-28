@@ -4,7 +4,7 @@
 
 If you have found a security issue in Sundial (the desktop app, the auto-updater, the in-game client mod, or the installer), please **do not** open a public GitHub issue.
 
-Open a private security advisory at https://github.com/HumanGenome/Sundial/security/advisories/new. That is the preferred channel.
+Open a private security advisory at https://github.com/HumanGenome/Sundial/security/advisories/new. That is the only reporting channel. There is no security email address for this project; do not send reports to any address that claims to be one.
 
 Include:
 
