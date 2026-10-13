@@ -3,121 +3,90 @@
 </p>
 
 <p align="center">
-  <a href="#install"><img src="https://img.shields.io/badge/Platform-Windows_10%2F11-blue.svg" alt="Platform"></a>
+  <a href="#install"><img src="https://img.shields.io/badge/Platform-Windows_10%2F11%2FServer-blue.svg" alt="Platform"></a>
   <a href="https://store.steampowered.com/app/1805110/"><img src="https://img.shields.io/badge/Game-Solarpunk-darkgreen.svg" alt="Game"></a>
-  <a href="https://github.com/HumanGenome/Sundial"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="License"></a>
+  <a href="https://github.com/HumanGenome/SundialServer#server-settings"><img src="https://img.shields.io/badge/Players-4_slots_by_default-brightgreen.svg" alt="Players"></a>
+  <a href="https://github.com/HumanGenome/SundialServer"><img src="https://img.shields.io/badge/Server_Source-SundialServer-444.svg" alt="Server Source"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="License"></a>
 </p>
 
 # Sundial
 
-Sundial gives **Solarpunk** IP/port multiplayer on dedicated servers: players join through the Sundial desktop app, hosts run a Sundial server package next to the Solarpunk game files, and worlds stay on the server with per-character saves, password auth, snapshots, admin tools, server query, a live web map, and a server-side chat feed. No session invites, no host-must-be-online — the world runs 24/7 whether anyone is on or not.
+**Solarpunk** has no dedicated server. Its multiplayer is a session hosted from one player's copy of the game, so the world is only online while that player is. Sundial adds a Solarpunk dedicated server: [SundialServer](https://github.com/HumanGenome/SundialServer) runs the game headless on a Windows machine with a public IP and port, and the Sundial app connects players to it by address.
 
-Every player must install Sundial to join a Sundial server. Stock Solarpunk cannot connect to Sundial servers directly.
+Every player must install Sundial to join a Sundial server. Stock Solarpunk cannot connect to a Sundial server directly.
 
 <p align="center">
-  <img src="docs/img/launcher.png" alt="Sundial" width="860">
+  <img src="docs/img/launcher.png" alt="The Sundial app with a saved server, its status and the Connect button" width="860">
 </p>
 
 ## Features
 
-### 🧭 Join by IP and port
-Add a server address once, pick a character, and connect straight into the hosted world. Sundial derives the query, RCON, and admin ports from the gameplay port, so you only ever enter one port.
+### 🧭 Join by address
+Add the server's IP or hostname and its gameplay port, pick a character and click Connect. The app installs its connection mod into your game, starts Solarpunk and joins the server. It also shows whether the server is up and who is on it.
 
-### 💾 Server-side worlds
-The world lives on the host machine and keeps running after players leave. SolarpunkServer supervises a headless copy of the game, watches its health, and restarts it if it crashes.
+### 🧑‍🌾 Your own characters
+Each character name gets its own save on the server, so several people, or one person with several characters, keep separate progress in the same world. The app remembers which character you used on each server.
 
-### 🧑‍🌾 Per-character saves
-Each character name maps to its own stable save identity on the server, so several people (or one person with several characters) keep separate progress on the same world. Sundial remembers the character you used for each saved server.
-
-### 🔁 Snapshots and rollback
-Admins can take world snapshots and list saved worlds from RCON (`save snapshot`, `save list`), giving a recovery point before major changes.
+### 🔒 Join password
+Solarpunk has no join password of its own, so Sundial adds one. Set it on the server and every remote join is checked against it; anyone who doesn't match is kicked. A server that cannot load its password check shuts itself down instead of running open.
 
 ### 🛠 Admin console
-SolarpunkServer exposes Source RCON for `status`, `players`, `ping`, `save snapshot`, `save list`, `say`, `announce`, `motd`, and a ban system (`ban`, `unban`, `bans`). The Sundial app has a built-in console tab.
+The app has a Console tab for the server's RCON: `status`, `players`, `say`, `announce`, a message of the day, and `ban`, `unban` and `bans`.
+
+### 🔁 World snapshots
+Admins take and list world snapshots over RCON (`save snapshot`, `save list`) and restore one from the app's World backups dialog, with a snapshot taken first so the restore can be undone.
+
+### 🗺 Player map
+The server serves a live page at `/map/` that plots where each connected player is, and a player list over HTTP.
+
+### 💬 Server chat feed
+The server keeps a chat feed with a message of the day and admin broadcasts, readable over RCON and HTTP. There is no in-game chat window yet.
+
+### 🧩 Server mod list
+UE4SS mods load on both the players' games and the server. Each server publishes which mods are required, recommended or blocked, and the app shows that list for the server you select.
 
 ### 📡 Server query
-SolarpunkServer answers Source A2S query so server lists, monitoring tools, and bots can read status and player counts.
-
-### 🔒 Password auth
-Set a server password and Sundial gates joins on it server-side, kicking anyone who doesn't match. Solarpunk has no native password handling, so Sundial provides its own.
-
-### 🗺 Live web map + roster
-The server tracks connected players and their in-world positions and serves a live map at `/map/` plus a player roster over HTTP, so you can see who's online and where they are without being in the game.
-
-### 💬 Server chat + MOTD
-The server keeps a chat feed with an MOTD, admin `say`/`announce` broadcasts, and an HTTP chat API. An in-game overlay mod exists as a **preview** — it is not enabled by default yet.
-
-### 🧩 Mods
-Sundial loads Lua and C++ mods through UE4SS on both the client and the host, and servers publish a mod manifest (required / recommended / blocked) that the app shows per server.
+The server answers Source A2S query, so server lists, monitoring tools and Discord bots can read its status and player count.
 
 ## Install
 
 ### Managed hosting
-The shortest path is [SurvivalServers.com Solarpunk hosting](https://www.survivalservers.com/services/game_servers/solarpunk/?utm_source=github&utm_medium=readme_install&utm_campaign=sundial). Sundial is already installed, ports are handled, and the panel shows a one-click setup link for players.
+[SurvivalServers.com Solarpunk hosting](https://www.survivalservers.com/services/game_servers/solarpunk/?utm_source=github&utm_medium=readme_install&utm_campaign=sundial) runs SundialServer for you, handles the ports and gives players a one-click setup link.
 
 ### Players
-1. Download `SundialSetup-<version>.exe` from the [latest release](https://github.com/HumanGenome/Sundial/releases/latest).
-2. Run the installer. Windows SmartScreen may warn because the installer is not code-signed yet; choose **More info** then **Run anyway**.
-3. Open Sundial, add the server address, pick a character name, and click **Connect**.
+1. Download `SundialSetup-latest.exe` from the [latest release](https://github.com/HumanGenome/Sundial/releases/latest).
+2. Run the installer. Windows SmartScreen may warn because the installer is not code-signed yet; choose **More info**, then **Run anyway**.
+3. Open Sundial, click **Add Server** and enter the server's address, gameplay port and password if it has one.
+4. Pick a character name and click **Connect**.
 
-Sundial checks for app updates automatically on launch and while it is running.
+Sundial checks for app updates when it starts and while it runs.
 
 ### Self-hosted servers
-1. Download `SundialServer-v<version>.zip` from the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest).
-2. Extract it on the Windows host.
-3. Edit `SolarpunkServer\appsettings.json` (ports, server name, passwords).
-4. **Install the Solarpunk game files** into the folder set as `GameInstallRoot` (default `C:\Solarpunk\game`) — SolarpunkServer launches the game from there, it does not ship the game. Either copy your existing `Steam\steamapps\common\Solarpunk` folder into that path, or install it with SteamCMD using a Steam account that owns Solarpunk: `steamcmd +force_install_dir C:\Solarpunk\game +login <account> +app_update 1805110 validate +quit`. The server runs headless — no GPU is required.
-5. Copy the contents of `SolarpunkServer\ue4ss-server\` into `<GameInstallRoot>\Solarpunk\Binaries\Win64\`. Without this the game comes up as a plain Solarpunk listen server with no password gate, chat, roster, or admin tools.
-6. Forward/open the gameplay UDP port, query UDP port, RCON TCP port, and admin HTTP TCP port.
-7. Run `SolarpunkServer\SolarpunkServer.exe`.
-
-Full server documentation — settings, RCON, the admin API, the runtime, and the wire protocols — lives in [SundialServer](https://github.com/HumanGenome/SundialServer#documentation).
-
-### Port topology
-All side-channel ports derive from the gameplay port:
-
-| Port | Use |
-|---|---|
-| base | Solarpunk gameplay (UDP) |
-| +2 | Source A2S query (UDP) |
-| +3 | Source RCON (TCP) |
-| +4 | Admin HTTP API + live map (TCP) |
-
-## FAQ
-
-### How do I join a server?
-Open Sundial, click Add Server, and enter a name, the server's IP or hostname, and its gameplay port. Add the server password if it has one. Select the server, pick a character name, and click Connect — Sundial stages the client-side UE4SS pack, writes the transport config, launches Solarpunk, and joins automatically.
-
-### Can I run the server on the same machine I play on?
-No. The Sundial server runs its own copy of Solarpunk in the background and your game client runs a second copy, and Steam only allows one running instance of a game per account. Run the server on a separate host and connect to it from your gaming PC.
-
-### Is Linux supported?
-No. Sundial is Windows-only, for both the player app and the server (Windows 10/11, 64-bit). The server launches the Windows build of Solarpunk and uses Windows process management.
+Download `SundialServer-v<version>.zip` from the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest) and follow its [installation steps](https://github.com/HumanGenome/SundialServer#installation). The host needs the Solarpunk game files from your own copy, either your Steam folder or a SteamCMD install with an account that owns the game.
 
 ## Releases
 
-The player installer lives on this repo's [releases](https://github.com/HumanGenome/Sundial/releases/latest):
-
-- `SundialSetup-<version>.exe` — installer for players
-
-The dedicated server package (`SundialServer-v<version>.zip`) is published on the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest). If you only want to play on someone else's server, you need the installer, not the server zip.
+This repo publishes the player installer, `SundialSetup-<version>.exe`, and a portable zip of the app. The server package, `SundialServer-v<version>.zip`, is published on the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest). To play on someone else's server you only need the installer.
 
 ## Source
 
-Sundial is split into two repos:
+Sundial is split into two repos: **Sundial** (this repo) carries the player app's releases and documentation, and **[SundialServer](https://github.com/HumanGenome/SundialServer)** is the open-source dedicated server.
 
-- **Sundial** (this repo) — the client side: the desktop app players install, plus the public downloads and documentation.
-- **[SundialServer](https://github.com/HumanGenome/SundialServer)** — the open-source dedicated server hosts run next to Solarpunk.
+## FAQ
 
-Players only need this repo's releases; hosts run the server from SundialServer's.
+### Is Linux supported?
+No. The app and the server are Windows only (Windows 10, 11 or Server, 64-bit). The server launches the Windows build of Solarpunk.
 
-## Known Limitations
+### Is there in-game chat?
+Not yet. The server keeps a chat feed, a message of the day and admin broadcasts, which you can read over RCON and HTTP, but players have no chat window in the game.
 
-A few rough edges relative to stock Solarpunk:
+### Why does Windows warn about the installer?
+The installer is not code-signed yet. Each release lists the SHA-256 of its downloads in `checksums-launcher.txt`, so you can check the file you got before running it.
 
-- **In-game chat overlay is a preview.** The server-side chat feed, MOTD, and HTTP chat API are live, but the client overlay mod has not had its on-screen rendering visually signed off and is not enabled by default.
-- **Windows only.** Both the app and the server package are Windows 10/11 x64.
-- **No code signing yet.** SmartScreen will warn on first run of the installer; build-from-source is the escape hatch if you don't want to trust an unsigned binary.
+## Contributing
+
+Bug reports are welcome; [CONTRIBUTING.md](CONTRIBUTING.md) lists what to include. Server problems belong on [SundialServer](https://github.com/HumanGenome/SundialServer/issues).
 
 ## Community Note
 
@@ -125,9 +94,9 @@ Sundial is a community project and is not affiliated with or endorsed by the dev
 
 ## License
 
-See [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
 
 ## Credits
 
-- [UE4SS](https://github.com/UE4SS-RE/RE-UE4SS) — Unreal Engine scripting and modding framework
-- [Avalonia](https://avaloniaui.net/) — .NET UI framework used by Sundial
+- [UE4SS](https://github.com/UE4SS-RE/RE-UE4SS): Unreal Engine scripting and modding framework
+- [Avalonia](https://avaloniaui.net/): .NET UI framework used by the Sundial app

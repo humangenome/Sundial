@@ -26,7 +26,7 @@ In scope:
 - Anything that lets a malicious server or a network attacker run code on a player's machine
 - Auto-update integrity: signature bypass, package substitution, or downgrade
 - Local privilege escalation through the installer or the update swap
-- Credential disclosure — a saved server password or RCON password leaking outside the app
+- Credential disclosure: a saved server password or RCON password leaking outside the app
 
 Out of scope:
 

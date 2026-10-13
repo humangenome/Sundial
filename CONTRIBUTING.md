@@ -17,7 +17,7 @@ Open an issue. Include:
 Two things worth checking before filing:
 
 - **Connect does nothing.** Confirm the game is not already running under a different account, and that Steam is signed in.
-- **Joined but landed on empty progress.** Character names key the save shard and are matched case-insensitively — a renamed character is a new character.
+- **Joined but landed on empty progress.** Character names key the save shard and are matched case-insensitively, so a renamed character is a new character.
 
 If your issue is about specific managed hosting (panel, billing, support), contact your host directly.
 
@@ -28,10 +28,10 @@ Open an issue. Describe the use case, not the implementation.
 ## Pull requests
 
 - Branch from `main`, name `feat/<short-slug>` or `fix/<short-slug>`
-- Keep commits short and focused — one logical change per commit
+- Keep commits short and focused: one logical change per commit
 - Match existing code style
 - Run the test suite before opening the PR
-- Anything touching the auto-updater needs a note on how you validated the signature and rejection paths — a broken updater cannot be fixed by another update
+- Anything touching the auto-updater needs a note on how you validated the signature and rejection paths, because a broken updater cannot be fixed by another update
 
 ## Code of conduct
 
