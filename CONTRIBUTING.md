@@ -19,7 +19,7 @@ Two things worth checking before filing:
 - **Connect does nothing.** Confirm the game is not already running under a different account, and that Steam is signed in.
 - **Joined but landed on empty progress.** Character names key the save shard and are matched case-insensitively, so a renamed character is a new character.
 
-If your issue is about specific managed hosting (panel, billing, support), contact your host directly.
+If your issue is about a hosted server you rent (panel, billing, support), contact your host directly.
 
 ## Feature requests
 

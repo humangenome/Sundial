@@ -47,7 +47,7 @@ The server answers Source A2S query, so server lists, monitoring tools and Disco
 
 ## Install
 
-### Managed hosting
+### Rent a server
 [SurvivalServers.com Solarpunk hosting](https://www.survivalservers.com/services/game_servers/solarpunk/?utm_source=github&utm_medium=readme_install&utm_campaign=sundial) runs SundialServer for you, handles the ports and gives players a one-click setup link.
 
 ### Players
