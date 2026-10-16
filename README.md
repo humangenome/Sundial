@@ -16,6 +16,10 @@
 
 Every player must install Sundial to join a Sundial server. Stock Solarpunk cannot connect to a Sundial server directly.
 
+<p align="center">
+  <img src="docs/img/launcher.png" alt="The Sundial app with a saved server, its status and the Connect button" width="860">
+</p>
+
 ## Features
 
 ### 🧭 Join by address
