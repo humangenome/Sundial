@@ -14,7 +14,7 @@
 
 **Solarpunk** has no dedicated server. Its multiplayer is a session hosted from one player's copy of the game, so the world is only online while that player is. Sundial adds a Solarpunk dedicated server: [SundialServer](https://github.com/HumanGenome/SundialServer) runs the game headless on a Windows machine with a public IP and port, and the Sundial app connects players to it by address.
 
-Every player must install Sundial to join a Sundial server. Stock Solarpunk cannot connect to a Sundial server directly.
+Every player needs the Sundial app to join a server by address. Solarpunk 1.3.0 moved the game's multiplayer to Epic Online Services, and joining by address has not been confirmed on 1.3.0.
 
 <p align="center">
   <img src="docs/img/launcher.png" alt="The Sundial app with a saved server, its status and the Connect button" width="860">
@@ -52,9 +52,11 @@ The server answers Source A2S query, so server lists, monitoring tools and Disco
 ## Install
 
 ### Rent a server
-[SurvivalServers.com Solarpunk hosting](https://www.survivalservers.com/services/game_servers/solarpunk/?utm_source=github&utm_medium=readme_install&utm_campaign=sundial) runs SundialServer for you, handles the ports and gives players a one-click setup link.
+[SurvivalServers.com Solarpunk hosting](https://www.survivalservers.com/services/game_servers/solarpunk/?utm_source=github&utm_medium=readme_install&utm_campaign=sundial) runs SundialServer for you on Solarpunk 1.3.0. Its new servers use the game's own invite code (Multiplayer, Join session, Enter Code), so players do not need the Sundial app to join them.
 
 ### Players
+Players on an invite-code server need nothing from this page. To join by address with the Sundial app:
+
 1. Download `SundialSetup-latest.exe` from the [latest release](https://github.com/HumanGenome/Sundial/releases/latest).
 2. Run the installer. Windows SmartScreen may warn because the installer is not code-signed yet; choose **More info**, then **Run anyway**.
 3. Open Sundial, click **Add Server** and enter the server's address, gameplay port and password if it has one.
@@ -63,11 +65,11 @@ The server answers Source A2S query, so server lists, monitoring tools and Disco
 Sundial checks for app updates when it starts and while it runs.
 
 ### Self-hosted servers
-Download `SundialServer-v<version>.zip` from the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest) and follow its [installation steps](https://github.com/HumanGenome/SundialServer#installation). The host needs the Solarpunk game files from your own copy, either your Steam folder or a SteamCMD install with an account that owns the game.
+Download `SundialServer-v<version>.zip` from the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest) and follow its [installation steps](https://github.com/HumanGenome/SundialServer#installation). The host needs the Solarpunk game files from your own copy, either your Steam folder or a SteamCMD install with an account that owns the game. These steps set up a server that players join by address, which has not been confirmed on Solarpunk 1.3.0.
 
 ## Releases
 
-This repo publishes the player installer, `SundialSetup-<version>.exe`, and a portable zip of the app. The server package, `SundialServer-v<version>.zip`, is published on the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest). To play on someone else's server you only need the installer.
+This repo publishes the player installer, `SundialSetup-<version>.exe`, and a portable zip of the app. The server package, `SundialServer-v<version>.zip`, is published on the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest). To join someone else's server by address you only need the installer.
 
 ## Source
 
