@@ -1,96 +1,79 @@
 <p align="center">
-  <img src="docs/img/sundial-icon.png" alt="Sundial" width="180">
+  <img src="docs/img/sundial-logo.png" alt="Sundial" width="440">
 </p>
 
 <p align="center">
   <a href="#install"><img src="https://img.shields.io/badge/Platform-Windows_10%2F11%2FServer-blue.svg" alt="Platform"></a>
   <a href="https://store.steampowered.com/app/1805110/"><img src="https://img.shields.io/badge/Game-Solarpunk-darkgreen.svg" alt="Game"></a>
-  <a href="https://github.com/HumanGenome/SundialServer#server-settings"><img src="https://img.shields.io/badge/Players-4_slots_by_default-brightgreen.svg" alt="Players"></a>
+  <a href="#how-many-players-can-join"><img src="https://img.shields.io/badge/Players-up_to_4-brightgreen.svg" alt="Players"></a>
   <a href="https://github.com/HumanGenome/SundialServer"><img src="https://img.shields.io/badge/Server_Source-SundialServer-444.svg" alt="Server Source"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="License"></a>
 </p>
 
 # Sundial
 
-**Solarpunk** has no dedicated server. Its multiplayer is a session hosted from one player's copy of the game, so the world is only online while that player is. Sundial adds a Solarpunk dedicated server: [SundialServer](https://github.com/HumanGenome/SundialServer) runs the game headless on a Windows machine with a public IP and port, and the Sundial app connects players to it by address.
+**Solarpunk** has no dedicated server. Its multiplayer is a session hosted from one player's copy of the game, so the world is only online while that player is. [SundialServer](https://github.com/HumanGenome/SundialServer) runs Solarpunk headless on a Windows machine with an Epic sign-in of its own, so the world stays online with nobody hosting from their PC.
 
-Every player needs the Sundial app to join a server by address. Solarpunk 1.3.0 moved the game's multiplayer to Epic Online Services, and joining by address has not been confirmed on 1.3.0.
+Players join with the game's own invite code. There is nothing to install.
 
-<p align="center">
-  <img src="docs/img/launcher.png" alt="The Sundial app with a saved server, its status and the Connect button" width="860">
-</p>
+## How players join
 
-## Features
+1. Get the server's 5-letter code from whoever runs the server. A rented server's host shows it with the server's details.
+2. In Solarpunk, choose **Multiplayer**, **Join session**, **Enter Code**, and type the code.
 
-### 🧭 Join by address
-Add the server's IP or hostname and its gameplay port, pick a character and click Connect. The app installs its connection mod into your game, starts Solarpunk and joins the server. It also shows whether the server is up and who is on it.
+The code changes each time the server starts, so check it again after a restart.
 
-### 🧑‍🌾 Your own characters
-Each character name gets its own save on the server, so several people, or one person with several characters, keep separate progress in the same world. The app remembers which character you used on each server.
+## What the server does
 
-### 🔒 Join password
-Solarpunk has no join password of its own, so Sundial adds one. Set it on the server and every remote join is checked against it; anyone who doesn't match is kicked. A server that cannot load its password check shuts itself down instead of running open.
+- **Stays online.** The world runs on the server whether or not anyone is playing.
+- **Its own Epic identity.** Each server signs in to Epic Online Services as itself, so two servers on one machine never share an address.
+- **Bring your own world.** Upload a save from your single-player game and the group carries on from it. Your character in that world stays yours; the server keeps a hidden player of its own.
+- **World snapshots.** The server snapshots the world on request (and on every autosave when that is switched on) and can put an earlier snapshot back, taking a snapshot of the running world first.
+- **Admin console.** Source RCON for `status`, `players` and the snapshot commands.
+- **Server query.** The server answers Source A2S query, so server lists, monitoring tools and Discord bots can read its status and player count.
 
-### 🛠 Admin console
-The app has a Console tab for the server's RCON: `status`, `players`, `say`, `announce`, a message of the day, and `ban`, `unban` and `bans`.
+## The Sundial app (legacy)
 
-### 🔁 World snapshots
-Admins take and list world snapshots over RCON (`save snapshot`, `save list`) and restore one from the app's World backups dialog, with a snapshot taken first so the restore can be undone.
-
-### 🗺 Player map
-The server serves a live page at `/map/` that plots where each connected player is, and a player list over HTTP.
-
-### 💬 Server chat feed
-The server keeps a chat feed with a message of the day and admin broadcasts, readable over RCON and HTTP. There is no in-game chat window yet.
-
-### 🧩 Server mod list
-UE4SS mods load on both the players' games and the server. Each server publishes which mods are required, recommended or blocked, and the app shows that list for the server you select.
-
-### 📡 Server query
-The server answers Source A2S query, so server lists, monitoring tools and Discord bots can read its status and player count.
+The Sundial app was for Solarpunk before 1.3.0, when players joined a server by address. Solarpunk 1.3.0 moved the game's multiplayer to Epic Online Services, and the app cannot join a 1.3.0 server; players do not need it now. Its releases stay on this repo's [release page](https://github.com/HumanGenome/Sundial/releases) for reference.
 
 ## Install
 
 ### Rent a server
-[SurvivalServers.com Solarpunk hosting](https://www.survivalservers.com/services/game_servers/solarpunk/?utm_source=github&utm_medium=readme_install&utm_campaign=sundial) runs SundialServer for you on Solarpunk 1.3.0. Its new servers use the game's own invite code (Multiplayer, Join session, Enter Code), so players do not need the Sundial app to join them.
-
-### Players
-Players on an invite-code server need nothing from this page. To join by address with the Sundial app:
-
-1. Download `SundialSetup-latest.exe` from the [latest release](https://github.com/HumanGenome/Sundial/releases/latest).
-2. Run the installer. Windows SmartScreen may warn because the installer is not code-signed yet; choose **More info**, then **Run anyway**.
-3. Open Sundial, click **Add Server** and enter the server's address, gameplay port and password if it has one.
-4. Pick a character name and click **Connect**.
-
-Sundial checks for app updates when it starts and while it runs.
+[SurvivalServers.com Solarpunk hosting](https://www.survivalservers.com/services/game_servers/solarpunk/?utm_source=github&utm_medium=readme_install&utm_campaign=sundial) runs SundialServer for you on Solarpunk 1.3.0, and shows the server's invite code in its control panel.
 
 ### Self-hosted servers
-Download `SundialServer-v<version>.zip` from the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest) and follow its [installation steps](https://github.com/HumanGenome/SundialServer#installation). The host needs the Solarpunk game files from your own copy, either your Steam folder or a SteamCMD install with an account that owns the game. These steps set up a server that players join by address, which has not been confirmed on Solarpunk 1.3.0.
+SundialServer's [self-host steps](https://github.com/HumanGenome/SundialServer#installation) were written for Solarpunk before 1.3.0 and have not been redone for 1.3.0 yet. A server set up from them today does not open its world. The server package is on the [SundialServer release page](https://github.com/HumanGenome/SundialServer/releases/latest), and a 1.3.0 host needs the Solarpunk game files from your own copy.
 
 ## Releases
 
-This repo publishes the player installer, `SundialSetup-<version>.exe`, and a portable zip of the app. The server package, `SundialServer-v<version>.zip`, is published on the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest). To join someone else's server by address you only need the installer.
+This repo's releases are the legacy Sundial app (`SundialSetup-<version>.exe` and a portable zip) for Solarpunk before 1.3.0. The server package, `SundialServer-v<version>.zip`, is published on the [SundialServer releases](https://github.com/HumanGenome/SundialServer/releases/latest).
 
 ## Source
 
-Sundial is split into two repos: **Sundial** (this repo) carries the player app's releases and documentation, and **[SundialServer](https://github.com/HumanGenome/SundialServer)** is the open-source dedicated server.
+**[SundialServer](https://github.com/HumanGenome/SundialServer)** is the open-source dedicated server. This repo carries the documentation and the legacy app's releases.
 
 ## FAQ
 
+### Do players need to install anything?
+No. Solarpunk's own Join session screen takes the server's invite code.
+
+### How many players can join?
+Up to four, the number Solarpunk's [Steam page](https://store.steampowered.com/app/1805110/) gives: "made for solo play and small group cooperative play (up to 4 players)". The host sets the server's slot count.
+
+### Why did the code change?
+The server gets a new invite code each time it starts. Ask the host for the current one.
+
 ### Is Linux supported?
-No. The app and the server are Windows only (Windows 10, 11 or Server, 64-bit). The server launches the Windows build of Solarpunk.
+No. The server is Windows only (Windows 10, 11 or Server, 64-bit) because it runs the Windows build of Solarpunk.
 
-### Is there in-game chat?
-Not yet. The server keeps a chat feed, a message of the day and admin broadcasts, which you can read over RCON and HTTP, but players have no chat window in the game.
-
-### Why does Windows warn about the installer?
-The installer is not code-signed yet. Each release lists the SHA-256 of its downloads in `checksums-launcher.txt`, so you can check the file you got before running it.
+### Is this official?
+No. Sundial is an independent project. The developers of Solarpunk do not ship dedicated servers for it.
 
 ## Contributing
 
 Bug reports are welcome; [CONTRIBUTING.md](CONTRIBUTING.md) lists what to include. Server problems belong on [SundialServer](https://github.com/HumanGenome/SundialServer/issues).
 
-## Community Note
+## Community note
 
 Sundial is a community project and is not affiliated with or endorsed by the developers of Solarpunk.
 
@@ -100,5 +83,5 @@ MIT. See [LICENSE](LICENSE).
 
 ## Credits
 
-- [UE4SS](https://github.com/UE4SS-RE/RE-UE4SS): Unreal Engine scripting and modding framework
-- [Avalonia](https://avaloniaui.net/): .NET UI framework used by the Sundial app
+- [UE4SS](https://github.com/UE4SS-RE/RE-UE4SS): Unreal Engine scripting and modding framework, used on the server
+- [Avalonia](https://avaloniaui.net/): .NET UI framework used by the legacy Sundial app
