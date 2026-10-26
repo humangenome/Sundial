@@ -42,7 +42,7 @@ The Sundial app was for Solarpunk before 1.3.0, when players joined a server by 
 [SurvivalServers.com Solarpunk hosting](https://www.survivalservers.com/services/game_servers/solarpunk/?utm_source=github&utm_medium=readme_install&utm_campaign=sundial) runs SundialServer for you on Solarpunk 1.3.0, and shows the server's invite code in its control panel.
 
 ### Self-hosted servers
-SundialServer's [self-host steps](https://github.com/HumanGenome/SundialServer#installation) were written for Solarpunk before 1.3.0 and have not been redone for 1.3.0 yet. A server set up from them today does not open its world. The server package is on the [SundialServer release page](https://github.com/HumanGenome/SundialServer/releases/latest), and a 1.3.0 host needs the Solarpunk game files from your own copy.
+Self-hosting on the current Solarpunk version is not supported by the public package. The server source is on [SundialServer](https://github.com/HumanGenome/SundialServer).
 
 ## Releases
 
