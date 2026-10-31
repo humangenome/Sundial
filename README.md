@@ -66,7 +66,7 @@ The server package, `SundialServer-v<version>.zip`, is published on the [Sundial
 No. Solarpunk's own Join session box takes the server's invite code.
 
 ### How many players can join?
-Up to four, the number Solarpunk's [Steam page](https://store.steampowered.com/app/1805110/) gives: "made for solo play and small group cooperative play (up to 4 players)". The host sets the server's slot count.
+Up to four, the number Solarpunk's [Steam page](https://store.steampowered.com/app/1805110/) gives: "made for solo play and small group cooperative play (up to 4 players)".
 
 ### Why did the code change?
 The server gets a new invite code each time it starts. Ask the host for the current one.
