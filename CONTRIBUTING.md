@@ -14,7 +14,7 @@ Open an issue on [SundialServer](https://github.com/HumanGenome/SundialServer/is
 
 If your issue is about a hosted server you rent (panel, billing, support), contact your host directly.
 
-The Sundial app is retired and gets no new releases. Players do not need it on Solarpunk 1.3.0.
+The Sundial app is retired. Its last release, 0.1.72, puts Solarpunk's own settings back; there will be no further releases. Players do not need it on Solarpunk 1.3.0.
 
 ## Pull requests
 
