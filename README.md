@@ -34,7 +34,7 @@ Every Sundial server has a 5-letter invite code. Players type it into Solarpunk'
 - **Upload a save.** Upload your single-player world and your group carries on in it. You keep your own character.
 - **Saved before every stop.** The game saves by itself only every 2.5 minutes. Before the server stops or restarts, Sundial has the game save, so the last minutes of building aren't lost.
 - **Crash restarts.** The server starts the game again if it stops unexpectedly.
-- **World backups.** The server backs up the world on request and can restore an earlier backup, backing up the running world first.
+- **World backups.** The server backs up the world on request and can restore an earlier backup, backing up the last saved world first.
 - **Server console.** RCON for the server's status, the player list, kick, ban and world backups.
 - **Shows up in server lists.** The server answers Source server queries, so a server list, monitoring tool or Discord bot given its address can read its name and player count.
 
